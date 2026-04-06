@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>All 194 Countries | National Days Calendar 2026 | A to Z</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #eef2f7 0%, #e0e8f0 100%);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 2rem 1.5rem;
+            line-height: 1.5;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .report-header {
+            background: linear-gradient(135deg, #0a2b4e 0%, #1e4a76 100%);
+            border-radius: 2rem;
+            padding: 2rem 2rem 1.8rem 2rem;
+            margin-bottom: 2rem;
+            color: white;
+            box-shadow: 0 12px 28px rgba(0, 20, 40, 0.25);
+            text-align: center;
+        }
+
+        .report-header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+        }
+
+        .submission-details {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            font-weight: 500;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .submission-details span {
+            background: rgba(255,255,240,0.15);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+        }
+
+        .purpose-badge {
+            background: #e6b422;
+            color: #1e3a5f;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .current-date-note {
+            background: rgba(0,0,0,0.2);
+            margin-top: 1rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            display: inline-block;
+        }
+
+        /* Search Bar Styles */
+        .search-container {
+            margin: 1.5rem 0 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            background: white;
+            border-radius: 3rem;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            max-width: 450px;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            padding: 0.6rem 0;
+            width: 100%;
+            font-family: inherit;
+            background: transparent;
+        }
+
+        .search-box .search-icon {
+            font-size: 1.2rem;
+            color: #1e5a88;
+        }
+
+        .clear-btn {
+            background: #e6b422;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #1e3a5f;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .clear-btn:hover {
+            background: #f5cd6d;
+            transform: scale(1.02);
+        }
+
+        /* Filter Buttons */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .filter-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 500;
+            cursor: pointer;
+            color: white;
+            font-family: inherit;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255,255,255,0.35);
+            transform: scale(1.02);
+        }
+
+        .filter-btn.active {
+            background: #e6b422;
+            color: #1e3a5f;
+            font-weight: 600;
+        }
+
+        .result-count {
+            background: rgba(0,0,0,0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            color: white;
+        }
+
+        .search-hint {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .status-upcoming {
+            background: #cfe3ff;
+            color: #1a5d8c;
+            font-weight: 600;
+            padding: 0.25rem 0.8rem;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 0.7rem;
+            white-space: nowrap;
+        }
+
+        .status-upcoming-soon {
+            background: #ffe0b5;
+            color: #b45f1b;
+            font-weight: 600;
+            padding: 0.25rem 0.8rem;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            animation: subtle-pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes subtle-pulse {
+            0% { opacity: 0.7; background-color: #ffe0b5; }
+            50% { opacity: 1; background-color: #ffd494; }
+            100% { opacity: 0.7; background-color: #ffe0b5; }
+        }
+
+        .status-passed {
+            background: #ffe0dd;
+            color: #b95c4a;
+            font-weight: 600;
+            padding: 0.25rem 0.8rem;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 0.7rem;
+            white-space: nowrap;
+        }
+
+        .status-today {
+            background: #e6b422;
+            color: #1e3a5f;
+            font-weight: bold;
+            padding: 0.25rem 0.8rem;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            animation: blink-bg 1.2s infinite;
+        }
+
+        @keyframes blink-bg {
+            0% { background-color: #e6b422; }
+            50% { background-color: #f5cd6d; }
+            100% { background-color: #e6b422; }
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 1.2rem;
+            background: white;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
+            max-height: 65vh;
+            overflow-y: auto;
+        }
+
+        .country-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.82rem;
+            min-width: 700px;
+        }
+
+        .country-table th {
+            background: #1e5a88;
+            color: white;
+            font-weight: 600;
+            padding: 0.8rem 0.8rem;
+            font-size: 0.85rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .country-table td {
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid #e9ecef;
+            color: #1f2e3a;
+            vertical-align: middle;
+        }
+
+        .country-table tr:hover td {
+            background-color: #f0f7fe;
+        }
+
+        .flag-icon {
+            font-size: 1rem;
+            margin-right: 5px;
+        }
+
+        .note-modern {
+            background: #f0f5fc;
+            border-radius: 1.5rem;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0 1rem;
+            border: 1px solid #cde0f0;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.2rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            font-size: 0.8rem;
+            color: #4a627a;
+        }
+
+        .letter-divider td {
+            background: #e6f0fa;
+            font-weight: bold;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.1rem;
+            color: #1e5a88;
+        }
+
+        @media (max-width: 680px) {
+            body { padding: 1rem; }
+            .report-header h1 { font-size: 1.2rem; }
+            .country-table th, .country-table td { padding: 0.4rem 0.5rem; font-size: 0.7rem; }
+            .search-box { max-width: 100%; }
+            .filter-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <div class="report-header">
+        <h1>🌍 All 194 Countries | National Days Calendar 2026</h1>
+        <div class="submission-details">
+            <span>📋 Prepared by: Sandeep Naykude</span>
+            <span>📆 Date: April 2026</span>
+        </div>
+        <div class="purpose-badge">
+            🏛️ Purpose: Official / Business Submission
+        </div>
+        <div class="current-date-note">
+            📍 Today: <strong>01 April 2026</strong> | Sorted: <strong>A to Z (Alphabetical)</strong> | 🇺🇳 All 194 UN Member Countries
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search in Country, Festival, or Date... (e.g., India, Independence, August)" autocomplete="off">
+            </div>
+            <button class="clear-btn" id="clearSearch">✖ Clear</button>
+            <div class="result-count" id="resultCount">194 results</div>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">📋 All</button>
+            <button class="filter-btn" data-filter="upcoming">🔮 Upcoming</button>
+            <button class="filter-btn" data-filter="upcoming-soon">🌟 Upcoming (Soon)</button>
+            <button class="filter-btn" data-filter="passed">✓ Passed</button>
+            <button class="filter-btn" data-filter="today">✨ Today</button>
+        </div>
+        <div class="search-hint">
+            💡 Tip: Use filters to see specific statuses | Combine with search for better results
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="country-table">
+            <thead>
+                <tr>
+                    <th style="width:5%">#</th>
+                    <th style="width:30%">Country</th>
+                    <th style="width:40%">Festival / Day</th>
+                    <th style="width:15%">Date (2026)</th>
+                    <th style="width:10%">Status</th>
+                </tr>
+            </thead>
+            <tbody id="countryTableBody"></tbody>
+        </table>
+    </div>
+
+    <div class="note-modern">
+        <strong>📜 Festival Status Guide & Filter Options</strong>
+        <ul style="margin-top: 12px; margin-left: 20px; color: #1e4a6e;">
+            <li>🌟 <strong style="background:#ffe0b5; padding:0.1rem 0.5rem; border-radius:20px;">Upcoming (Soon)</strong> — National day within next 7 days</li>
+            <li>🔮 <strong style="background:#cfe3ff; padding:0.1rem 0.5rem; border-radius:20px;">Upcoming</strong> — National day after 7 days or later</li>
+            <li>✓ <strong style="background:#ffe0dd; padding:0.1rem 0.5rem; border-radius:20px;">Passed</strong> — Already celebrated before 01 April 2026</li>
+            <li>✨ <strong style="background:#e6b422; padding:0.1rem 0.5rem; border-radius:20px;">Today</strong> — Happening on 01 April 2026</li>
+            <li>🇮🇳 <strong>India:</strong> Republic Day (26 Jan - Passed) + Independence Day (15 Aug - Upcoming)</li>
+            <li>🔍 <strong>Search + Filter:</strong> Use both together for precise results (e.g., search "India" + filter "Upcoming")</li>
+        </ul>
+    </div>
+
+    <div class="footer-note">
+        🌍 <strong>All 194 UN Countries National Days Report 2026</strong> — Prepared by Sandeep Naykude<br>
+        📅 Sorted A to Z | 🔍 Search by Country, Festival, or Date | 🎯 Filter by Status | Status as of 01 April 2026
+    </div>
+</div>
+
+<script>
+    // Complete list of 194 countries with their national days
+    const countriesData = [
+        { country: "Afghanistan", festival: "Independence Day", date: "19 August 2026", dateObj: new Date(2026, 7, 19) },
+        { country: "Albania", festival: "Independence Day", date: "28 November 2026", dateObj: new Date(2026, 10, 28) },
+        { country: "Algeria", festival: "Independence Day", date: "5 July 2026", dateObj: new Date(2026, 6, 5) },
+        { country: "Andorra", festival: "National Day", date: "8 September 2026", dateObj: new Date(2026, 8, 8) },
+        { country: "Angola", festival: "Independence Day", date: "11 November 2026", dateObj: new Date(2026, 10, 11) },
+        { country: "Antigua and Barbuda", festival: "Independence Day", date: "1 November 2026", dateObj: new Date(2026, 10, 1) },
+        { country: "Argentina", festival: "May Revolution Day", date: "25 May 2026", dateObj: new Date(2026, 4, 25) },
+        { country: "Armenia", festival: "Independence Day", date: "21 September 2026", dateObj: new Date(2026, 8, 21) },
+        { country: "Australia", festival: "Australia Day", date: "26 January 2026", dateObj: new Date(2026, 0, 26) },
+        { country: "Austria", festival: "National Day", date: "26 October 2026", dateObj: new Date(2026, 9, 26) },
+        { country: "Azerbaijan", festival: "Republic Day", date: "28 May 2026", dateObj: new Date(2026, 4, 28) },
+        { country: "Bahamas", festival: "Independence Day", date: "10 July 2026", dateObj: new Date(2026, 6, 10) },
+        { country: "Bahrain", festival: "National Day", date: "16 December 2026", dateObj: new Date(2026, 11, 16) },
+        { country: "Bangladesh", festival: "Independence Day", date: "26 March 2026", dateObj: new Date(2026, 2, 26) },
+        { country: "Barbados", festival: "Independence Day", date: "30 November 2026", dateObj: new Date(2026, 10, 30) },
+        { country: "Belarus", festival: "Independence Day", date: "3 July 2026", dateObj: new Date(2026, 6, 3) },
+        { country: "Belgium", festival: "National Day", date: "21 July 2026", dateObj: new Date(2026, 6, 21) },
+        { country: "Belize", festival: "Independence Day", date: "21 September 2026", dateObj: new Date(2026, 8, 21) },
+        { country: "Benin", festival: "Independence Day", date: "1 August 2026", dateObj: new Date(2026, 7, 1) },
+        { country: "Bhutan", festival: "National Day", date: "17 December 2026", dateObj: new Date(2026, 11, 17) },
+        { country: "Bolivia", festival: "Independence Day", date: "6 August 2026", dateObj: new Date(2026, 7, 6) },
+        { country: "Bosnia and Herzegovina", festival: "Statehood Day", date: "1 March 2026", dateObj: new Date(2026, 2, 1) },
+        { country: "Botswana", festival: "Independence Day", date: "30 September 2026", dateObj: new Date(2026, 8, 30) },
+        { country: "Brazil", festival: "Independence Day", date: "7 September 2026", dateObj: new Date(2026, 8, 7) },
+        { country: "Brunei", festival: "National Day", date: "23 February 2026", dateObj: new Date(2026, 1, 23) },
+        { country: "Bulgaria", festival: "Independence Day", date: "22 September 2026", dateObj: new Date(2026, 8, 22) },
+        { country: "Burkina Faso", festival: "Independence Day", date: "5 August 2026", dateObj: new Date(2026, 7, 5) },
+        { country: "Burundi", festival: "Independence Day", date: "1 July 2026", dateObj: new Date(2026, 6, 1) },
+        { country: "Cabo Verde", festival: "Independence Day", date: "5 July 2026", dateObj: new Date(2026, 6, 5) },
+        { country: "Cambodia", festival: "Independence Day", date: "9 November 2026", dateObj: new Date(2026, 10, 9) },
+        { country: "Cameroon", festival: "National Day", date: "20 May 2026", dateObj: new Date(2026, 4, 20) },
+        { country: "Canada", festival: "Canada Day", date: "1 July 2026", dateObj: new Date(2026, 6, 1) },
+        { country: "Central African Republic", festival: "National Day", date: "1 December 2026", dateObj: new Date(2026, 11, 1) },
+        { country: "Chad", festival: "Independence Day", date: "11 August 2026", dateObj: new Date(2026, 7, 11) },
+        { country: "Chile", festival: "Independence Day", date: "18 September 2026", dateObj: new Date(2026, 8, 18) },
+        { country: "China", festival: "National Day", date: "1 October 2026", dateObj: new Date(2026, 9, 1) },
+        { country: "Colombia", festival: "Independence Day", date: "20 July 2026", dateObj: new Date(2026, 6, 20) },
+        { country: "Comoros", festival: "Independence Day", date: "6 July 2026", dateObj: new Date(2026, 6, 6) },
+        { country: "Congo", festival: "National Day", date: "15 August 2026", dateObj: new Date(2026, 7, 15) },
+        { country: "Costa Rica", festival: "Independence Day", date: "15 September 2026", dateObj: new Date(2026, 8, 15) },
+        { country: "Côte d'Ivoire", festival: "Independence Day", date: "7 August 2026", dateObj: new Date(2026, 7, 7) },
+        { country: "Croatia", festival: "Statehood Day", date: "25 June 2026", dateObj: new Date(2026, 5, 25) },
+        { country: "Cuba", festival: "Revolution Day", date: "1 January 2026", dateObj: new Date(2026, 0, 1) },
+        { country: "Cyprus", festival: "Independence Day", date: "1 October 2026", dateObj: new Date(2026, 9, 1) },
+        { country: "Czech Republic", festival: "National Day", date: "28 October 2026", dateObj: new Date(2026, 9, 28) },
+        { country: "Denmark", festival: "Constitution Day", date: "5 June 2026", dateObj: new Date(2026, 5, 5) },
+        { country: "Djibouti", festival: "Independence Day", date: "27 June 2026", dateObj: new Date(2026, 5, 27) },
+        { country: "Dominica", festival: "Independence Day", date: "3 November 2026", dateObj: new Date(2026, 10, 3) },
+        { country: "Dominican Republic", festival: "Independence Day", date: "27 February 2026", dateObj: new Date(2026, 1, 27) },
+        { country: "Ecuador", festival: "Independence Day", date: "10 August 2026", dateObj: new Date(2026, 7, 10) },
+        { country: "Egypt", festival: "Revolution Day", date: "23 July 2026", dateObj: new Date(2026, 6, 23) },
+        { country: "El Salvador", festival: "Independence Day", date: "15 September 2026", dateObj: new Date(2026, 8, 15) },
+        { country: "Equatorial Guinea", festival: "Independence Day", date: "12 October 2026", dateObj: new Date(2026, 9, 12) },
+        { country: "Eritrea", festival: "Independence Day", date: "24 May 2026", dateObj: new Date(2026, 4, 24) },
+        { country: "Estonia", festival: "Independence Day", date: "24 February 2026", dateObj: new Date(2026, 1, 24) },
+        { country: "Eswatini", festival: "Independence Day", date: "6 September 2026", dateObj: new Date(2026, 8, 6) },
+        { country: "Ethiopia", festival: "National Day", date: "28 May 2026", dateObj: new Date(2026, 4, 28) },
+        { country: "Fiji", festival: "Independence Day", date: "10 October 2026", dateObj: new Date(2026, 9, 10) },
+        { country: "Finland", festival: "Independence Day", date: "6 December 2026", dateObj: new Date(2026, 11, 6) },
+        { country: "France", festival: "Bastille Day", date: "14 July 2026", dateObj: new Date(2026, 6, 14) },
+        { country: "Gabon", festival: "Independence Day", date: "17 August 2026", dateObj: new Date(2026, 7, 17) },
+        { country: "Gambia", festival: "Independence Day", date: "18 February 2026", dateObj: new Date(2026, 1, 18) },
+        { country: "Georgia", festival: "Independence Day", date: "26 May 2026", dateObj: new Date(2026, 4, 26) },
+        { country: "Germany", festival: "Unity Day", date: "3 October 2026", dateObj: new Date(2026, 9, 3) },
+        { country: "Ghana", festival: "Independence Day", date: "6 March 2026", dateObj: new Date(2026, 2, 6) },
+        { country: "Greece", festival: "Independence Day", date: "25 March 2026", dateObj: new Date(2026, 2, 25) },
+        { country: "Grenada", festival: "Independence Day", date: "7 February 2026", dateObj: new Date(2026, 1, 7) },
+        { country: "Guatemala", festival: "Independence Day", date: "15 September 2026", dateObj: new Date(2026, 8, 15) },
+        { country: "Guinea", festival: "Independence Day", date: "2 October 2026", dateObj: new Date(2026, 9, 2) },
+        { country: "Guinea-Bissau", festival: "Independence Day", date: "24 September 2026", dateObj: new Date(2026, 8, 24) },
+        { country: "Guyana", festival: "Republic Day", date: "23 February 2026", dateObj: new Date(2026, 1, 23) },
+        { country: "Haiti", festival: "Independence Day", date: "1 January 2026", dateObj: new Date(2026, 0, 1) },
+        { country: "Honduras", festival: "Independence Day", date: "15 September 2026", dateObj: new Date(2026, 8, 15) },
+        { country: "Hungary", festival: "National Day", date: "20 August 2026", dateObj: new Date(2026, 7, 20) },
+        { country: "Iceland", festival: "Independence Day", date: "17 June 2026", dateObj: new Date(2026, 5, 17) },
+        { country: "India", festival: "Republic Day", date: "26 January 2026", dateObj: new Date(2026, 0, 26) },
+        { country: "India", festival: "Independence Day", date: "15 August 2026", dateObj: new Date(2026, 7, 15) },
+        { country: "Indonesia", festival: "Independence Day", date: "17 August 2026", dateObj: new Date(2026, 7, 17) },
+        { country: "Iran", festival: "Islamic Republic Day", date: "1 April 2026", dateObj: new Date(2026, 3, 1) },
+        { country: "Iraq", festival: "Republic Day", date: "14 July 2026", dateObj: new Date(2026, 6, 14) },
+        { country: "Ireland", festival: "St. Patrick's Day", date: "17 March 2026", dateObj: new Date(2026, 2, 17) },
+        { country: "Israel", festival: "Independence Day", date: "29 April 2026", dateObj: new Date(2026, 3, 29) },
+        { country: "Italy", festival: "Republic Day", date: "2 June 2026", dateObj: new Date(2026, 5, 2) },
+        { country: "Jamaica", festival: "Independence Day", date: "6 August 2026", dateObj: new Date(2026, 7, 6) },
+        { country: "Japan", festival: "National Foundation Day", date: "11 February 2026", dateObj: new Date(2026, 1, 11) },
+        { country: "Jordan", festival: "Independence Day", date: "25 May 2026", dateObj: new Date(2026, 4, 25) },
+        { country: "Kazakhstan", festival: "Independence Day", date: "16 December 2026", dateObj: new Date(2026, 11, 16) },
+        { country: "Kenya", festival: "Jamhuri Day", date: "12 December 2026", dateObj: new Date(2026, 11, 12) },
+        { country: "Kiribati", festival: "Independence Day", date: "12 July 2026", dateObj: new Date(2026, 6, 12) },
+        { country: "Korea, North", festival: "National Day", date: "9 September 2026", dateObj: new Date(2026, 8, 9) },
+        { country: "Korea, South", festival: "Independence Movement Day", date: "1 March 2026", dateObj: new Date(2026, 2, 1) },
+        { country: "Kuwait", festival: "National Day", date: "25 February 2026", dateObj: new Date(2026, 1, 25) },
+        { country: "Kyrgyzstan", festival: "Independence Day", date: "31 August 2026", dateObj: new Date(2026, 7, 31) },
+        { country: "Laos", festival: "National Day", date: "2 December 2026", dateObj: new Date(2026, 11, 2) },
+        { country: "Latvia", festival: "Independence Day", date: "18 November 2026", dateObj: new Date(2026, 10, 18) },
+        { country: "Lebanon", festival: "Independence Day", date: "22 November 2026", dateObj: new Date(2026, 10, 22) },
+        { country: "Lesotho", festival: "Independence Day", date: "4 October 2026", dateObj: new Date(2026, 9, 4) },
+        { country: "Liberia", festival: "Independence Day", date: "26 July 2026", dateObj: new Date(2026, 6, 26) },
+        { country: "Libya", festival: "Independence Day", date: "24 December 2026", dateObj: new Date(2026, 11, 24) },
+        { country: "Liechtenstein", festival: "National Day", date: "15 August 2026", dateObj: new Date(2026, 7, 15) },
+        { country: "Lithuania", festival: "Independence Day", date: "16 February 2026", dateObj: new Date(2026, 1, 16) },
+        { country: "Luxembourg", festival: "National Day", date: "23 June 2026", dateObj: new Date(2026, 5, 23) },
+        { country: "Madagascar", festival: "Independence Day", date: "26 June 2026", dateObj: new Date(2026, 5, 26) },
+        { country: "Malawi", festival: "Independence Day", date: "6 July 2026", dateObj: new Date(2026, 6, 6) },
+        { country: "Malaysia", festival: "Independence Day", date: "31 August 2026", dateObj: new Date(2026, 7, 31) },
+        { country: "Maldives", festival: "Independence Day", date: "26 July 2026", dateObj: new Date(2026, 6, 26) },
+        { country: "Mali", festival: "Independence Day", date: "22 September 2026", dateObj: new Date(2026, 8, 22) },
+        { country: "Malta", festival: "Independence Day", date: "21 September 2026", dateObj: new Date(2026, 8, 21) },
+        { country: "Marshall Islands", festival: "Independence Day", date: "1 May 2026", dateObj: new Date(2026, 4, 1) },
+        { country: "Mauritania", festival: "Independence Day", date: "28 November 2026", dateObj: new Date(2026, 10, 28) },
+        { country: "Mauritius", festival: "Independence Day", date: "12 March 2026", dateObj: new Date(2026, 2, 12) },
+        { country: "Mexico", festival: "Independence Day", date: "16 September 2026", dateObj: new Date(2026, 8, 16) },
+        { country: "Micronesia", festival: "Independence Day", date: "3 November 2026", dateObj: new Date(2026, 10, 3) },
+        { country: "Moldova", festival: "Independence Day", date: "27 August 2026", dateObj: new Date(2026, 7, 27) },
+        { country: "Monaco", festival: "National Day", date: "19 November 2026", dateObj: new Date(2026, 10, 19) },
+        { country: "Mongolia", festival: "National Day", date: "11 July 2026", dateObj: new Date(2026, 6, 11) },
+        { country: "Montenegro", festival: "Independence Day", date: "21 May 2026", dateObj: new Date(2026, 4, 21) },
+        { country: "Morocco", festival: "Independence Day", date: "18 November 2026", dateObj: new Date(2026, 10, 18) },
+        { country: "Mozambique", festival: "Independence Day", date: "25 June 2026", dateObj: new Date(2026, 5, 25) },
+        { country: "Myanmar", festival: "Independence Day", date: "4 January 2026", dateObj: new Date(2026, 0, 4) },
+        { country: "Namibia", festival: "Independence Day", date: "21 March 2026", dateObj: new Date(2026, 2, 21) },
+        { country: "Nauru", festival: "Independence Day", date: "31 January 2026", dateObj: new Date(2026, 0, 31) },
+        { country: "Nepal", festival: "National Day", date: "20 September 2026", dateObj: new Date(2026, 8, 20) },
+        { country: "Netherlands", festival: "King's Day", date: "27 April 2026", dateObj: new Date(2026, 3, 27) },
+        { country: "New Zealand", festival: "Waitangi Day", date: "6 February 2026", dateObj: new Date(2026, 1, 6) },
+        { country: "Nicaragua", festival: "Independence Day", date: "15 September 2026", dateObj: new Date(2026, 8, 15) },
+        { country: "Niger", festival: "Independence Day", date: "3 August 2026", dateObj: new Date(2026, 7, 3) },
+        { country: "Nigeria", festival: "Independence Day", date: "1 October 2026", dateObj: new Date(2026, 9, 1) },
+        { country: "North Macedonia", festival: "Independence Day", date: "8 September 2026", dateObj: new Date(2026, 8, 8) },
+        { country: "Norway", festival: "Constitution Day", date: "17 May 2026", dateObj: new Date(2026, 4, 17) },
+        { country: "Oman", festival: "National Day", date: "18 November 2026", dateObj: new Date(2026, 10, 18) },
+        { country: "Pakistan", festival: "Independence Day", date: "14 August 2026", dateObj: new Date(2026, 7, 14) },
+        { country: "Palau", festival: "Independence Day", date: "1 October 2026", dateObj: new Date(2026, 9, 1) },
+        { country: "Panama", festival: "Separation Day", date: "3 November 2026", dateObj: new Date(2026, 10, 3) },
+        { country: "Papua New Guinea", festival: "Independence Day", date: "16 September 2026", dateObj: new Date(2026, 8, 16) },
+        { country: "Paraguay", festival: "Independence Day", date: "14 May 2026", dateObj: new Date(2026, 4, 14) },
+        { country: "Peru", festival: "Independence Day", date: "28 July 2026", dateObj: new Date(2026, 6, 28) },
+        { country: "Philippines", festival: "Independence Day", date: "12 June 2026", dateObj: new Date(2026, 5, 12) },
+        { country: "Poland", festival: "Constitution Day", date: "3 May 2026", dateObj: new Date(2026, 4, 3) },
+        { country: "Portugal", festival: "Portugal Day", date: "10 June 2026", dateObj: new Date(2026, 5, 10) },
+        { country: "Qatar", festival: "National Day", date: "18 December 2026", dateObj: new Date(2026, 11, 18) },
+        { country: "Romania", festival: "National Day", date: "1 December 2026", dateObj: new Date(2026, 11, 1) },
+        { country: "Russia", festival: "Russia Day", date: "12 June 2026", dateObj: new Date(2026, 5, 12) },
+        { country: "Rwanda", festival: "Independence Day", date: "1 July 2026", dateObj: new Date(2026, 6, 1) },
+        { country: "Saint Kitts and Nevis", festival: "Independence Day", date: "19 September 2026", dateObj: new Date(2026, 8, 19) },
+        { country: "Saint Lucia", festival: "Independence Day", date: "22 February 2026", dateObj: new Date(2026, 1, 22) },
+        { country: "Saint Vincent and the Grenadines", festival: "Independence Day", date: "27 October 2026", dateObj: new Date(2026, 9, 27) },
+        { country: "Samoa", festival: "Independence Day", date: "1 June 2026", dateObj: new Date(2026, 5, 1) },
+        { country: "San Marino", festival: "National Day", date: "3 September 2026", dateObj: new Date(2026, 8, 3) },
+        { country: "Sao Tome and Principe", festival: "Independence Day", date: "12 July 2026", dateObj: new Date(2026, 6, 12) },
+        { country: "Saudi Arabia", festival: "National Day", date: "23 September 2026", dateObj: new Date(2026, 8, 23) },
+        { country: "Senegal", festival: "Independence Day", date: "4 April 2026", dateObj: new Date(2026, 3, 4) },
+        { country: "Serbia", festival: "Statehood Day", date: "15 February 2026", dateObj: new Date(2026, 1, 15) },
+        { country: "Seychelles", festival: "Independence Day", date: "29 June 2026", dateObj: new Date(2026, 5, 29) },
+        { country: "Sierra Leone", festival: "Independence Day", date: "27 April 2026", dateObj: new Date(2026, 3, 27) },
+        { country: "Singapore", festival: "National Day", date: "9 August 2026", dateObj: new Date(2026, 7, 9) },
+        { country: "Slovakia", festival: "National Day", date: "1 September 2026", dateObj: new Date(2026, 8, 1) },
+        { country: "Slovenia", festival: "Statehood Day", date: "25 June 2026", dateObj: new Date(2026, 5, 25) },
+        { country: "Solomon Islands", festival: "Independence Day", date: "7 July 2026", dateObj: new Date(2026, 6, 7) },
+        { country: "Somalia", festival: "Independence Day", date: "1 July 2026", dateObj: new Date(2026, 6, 1) },
+        { country: "South Africa", festival: "Freedom Day", date: "27 April 2026", dateObj: new Date(2026, 3, 27) },
+        { country: "South Sudan", festival: "Independence Day", date: "9 July 2026", dateObj: new Date(2026, 6, 9) },
+        { country: "Spain", festival: "National Day", date: "12 October 2026", dateObj: new Date(2026, 9, 12) },
+        { country: "Sri Lanka", festival: "Independence Day", date: "4 February 2026", dateObj: new Date(2026, 1, 4) },
+        { country: "Sudan", festival: "Independence Day", date: "1 January 2026", dateObj: new Date(2026, 0, 1) },
+        { country: "Suriname", festival: "Independence Day", date: "25 November 2026", dateObj: new Date(2026, 10, 25) },
+        { country: "Sweden", festival: "National Day", date: "6 June 2026", dateObj: new Date(2026, 5, 6) },
+        { country: "Switzerland", festival: "National Day", date: "1 August 2026", dateObj: new Date(2026, 7, 1) },
+        { country: "Syria", festival: "Independence Day", date: "17 April 2026", dateObj: new Date(2026, 3, 17) },
+        { country: "Taiwan", festival: "National Day", date: "10 October 2026", dateObj: new Date(2026, 9, 10) },
+        { country: "Tajikistan", festival: "Independence Day", date: "9 September 2026", dateObj: new Date(2026, 8, 9) },
+        { country: "Tanzania", festival: "Independence Day", date: "9 December 2026", dateObj: new Date(2026, 11, 9) },
+        { country: "Thailand", festival: "Father's Day", date: "5 December 2026", dateObj: new Date(2026, 11, 5) },
+        { country: "Timor-Leste", festival: "Independence Day", date: "20 May 2026", dateObj: new Date(2026, 4, 20) },
+        { country: "Togo", festival: "Independence Day", date: "27 April 2026", dateObj: new Date(2026, 3, 27) },
+        { country: "Tonga", festival: "National Day", date: "4 November 2026", dateObj: new Date(2026, 10, 4) },
+        { country: "Trinidad and Tobago", festival: "Independence Day", date: "31 August 2026", dateObj: new Date(2026, 7, 31) },
+        { country: "Tunisia", festival: "Independence Day", date: "20 March 2026", dateObj: new Date(2026, 2, 20) },
+        { country: "Turkey", festival: "Republic Day", date: "29 October 2026", dateObj: new Date(2026, 9, 29) },
+        { country: "Turkmenistan", festival: "Independence Day", date: "27 October 2026", dateObj: new Date(2026, 9, 27) },
+        { country: "Tuvalu", festival: "Independence Day", date: "1 October 2026", dateObj: new Date(2026, 9, 1) },
+        { country: "Uganda", festival: "Independence Day", date: "9 October 2026", dateObj: new Date(2026, 9, 9) },
+        { country: "Ukraine", festival: "Independence Day", date: "24 August 2026", dateObj: new Date(2026, 7, 24) },
+        { country: "United Arab Emirates", festival: "National Day", date: "2 December 2026", dateObj: new Date(2026, 11, 2) },
+        { country: "United Kingdom", festival: "King's Official Birthday", date: "13 June 2026", dateObj: new Date(2026, 5, 13) },
+        { country: "United States", festival: "Independence Day", date: "4 July 2026", dateObj: new Date(2026, 6, 4) },
+        { country: "Uruguay", festival: "Independence Day", date: "25 August 2026", dateObj: new Date(2026, 7, 25) },
+        { country: "Uzbekistan", festival: "Independence Day", date: "1 September 2026", dateObj: new Date(2026, 8, 1) },
+        { country: "Vanuatu", festival: "Independence Day", date: "30 July 2026", dateObj: new Date(2026, 6, 30) },
+        { country: "Vatican City", festival: "Creation Day", date: "11 February 2026", dateObj: new Date(2026, 1, 11) },
+        { country: "Venezuela", festival: "Independence Day", date: "5 July 2026", dateObj: new Date(2026, 6, 5) },
+        { country: "Vietnam", festival: "National Day", date: "2 September 2026", dateObj: new Date(2026, 8, 2) },
+        { country: "Yemen", festival: "National Day", date: "22 May 2026", dateObj: new Date(2026, 4, 22) },
+        { country: "Zambia", festival: "Independence Day", date: "24 October 2026", dateObj: new Date(2026, 9, 24) },
+        { country: "Zimbabwe", festival: "Independence Day", date: "18 April 2026", dateObj: new Date(2026, 3, 18) }
+    ];
+
+    // Sort alphabetically by country name
+    countriesData.sort((a, b) => a.country.localeCompare(b.country));
+
+    const today = new Date(2026, 3, 1); // 01 April 2026
+
+    function getStatusText(dateObj) {
+        if (dateObj.toDateString() === today.toDateString()) {
+            return 'today';
+        } else if (dateObj < today) {
+            return 'passed';
+        } else {
+            const diffDays = Math.ceil((dateObj - today) / (1000 * 60 * 60 * 24));
+            if (diffDays <= 7) {
+                return 'upcoming-soon';
+            } else {
+                return 'upcoming';
+            }
+        }
+    }
+
+    function getStatusHtml(dateObj) {
+        const status = getStatusText(dateObj);
+        if (status === 'today') {
+            return '<span class="status-today">✨ TODAY ✨</span>';
+        } else if (status === 'passed') {
+            return '<span class="status-passed">✓ Passed</span>';
+        } else if (status === 'upcoming-soon') {
+            return '<span class="status-upcoming-soon">🌟 Upcoming (Soon)</span>';
+        } else {
+            return '<span class="status-upcoming">🔮 Upcoming</span>';
+        }
+    }
+
+    function getFlag(country) {
+        const flagMap = {
+            "India": "🇮🇳", "United States": "🇺🇸", "United Kingdom": "🇬🇧", "Canada": "🇨🇦", "Australia": "🇦🇺",
+            "Germany": "🇩🇪", "France": "🇫🇷", "Italy": "🇮🇹", "Spain": "🇪🇸", "Portugal": "🇵🇹",
+            "Brazil": "🇧🇷", "Argentina": "🇦🇷", "Mexico": "🇲🇽", "China": "🇨🇳", "Japan": "🇯🇵",
+            "South Korea": "🇰🇷", "Russia": "🇷🇺", "South Africa": "🇿🇦", "Egypt": "🇪🇬", "Turkey": "🇹🇷",
+            "Pakistan": "🇵🇰", "Bangladesh": "🇧🇩", "Indonesia": "🇮🇩", "Malaysia": "🇲🇾", "Singapore": "🇸🇬",
+            "Thailand": "🇹🇭", "Vietnam": "🇻🇳", "Philippines": "🇵🇭", "Saudi Arabia": "🇸🇦", "Iran": "🇮🇷",
+            "Iraq": "🇮🇶", "Israel": "🇮🇱", "Jordan": "🇯🇴", "Lebanon": "🇱🇧", "Syria": "🇸🇾",
+            "Afghanistan": "🇦🇫", "Nepal": "🇳🇵", "Sri Lanka": "🇱🇰", "Myanmar": "🇲🇲", "Mongolia": "🇲🇳"
+        };
+        return flagMap[country] || "🌍";
+    }
+
+    let currentFilter = "all";
+    let currentSearch = "";
+
+    function renderTable() {
+        const tbody = document.getElementById('countryTableBody');
+        let html = '';
+        let currentLetter = '';
+        let counter = 1;
+        let filteredCount = 0;
+
+        countriesData.forEach(country => {
+            const statusText = getStatusText(country.dateObj);
+            
+            // Filter by status
+            if (currentFilter !== "all" && statusText !== currentFilter) {
+                return;
+            }
+            
+            // Filter by search (all columns)
+            const searchTerm = currentSearch.toLowerCase().trim();
+            if (searchTerm && 
+                !country.country.toLowerCase().includes(searchTerm) &&
+                !country.festival.toLowerCase().includes(searchTerm) &&
+                !country.date.toLowerCase().includes(searchTerm)) {
+                return;
+            }
+            
+            filteredCount++;
+            
+            const firstLetter = country.country.charAt(0).toUpperCase();
+            if (firstLetter !== currentLetter) {
+                currentLetter = firstLetter;
+                html += `<tr class="letter-divider"><td colspan="5"><strong>📌 ${currentLetter}</strong></td></tr>`;
+            }
+            const flag = getFlag(country.country);
+            const statusHtml = getStatusHtml(country.dateObj);
+            html += `<tr>
+                <td>${counter++}</td>
+                <td><span class="flag-icon">${flag}</span> ${country.country}</td>
+                <td>${country.festival}</td>
+                <td>${country.date}</td>
+                <td>${statusHtml}</td>
+            </tr>`;
+        });
+
+        if (filteredCount === 0) {
+            html = `<tr><td colspan="5" class="no-results">🔍 No results found${currentSearch ? ` for "${currentSearch}"` : ''}${currentFilter !== "all" ? ` with filter "${currentFilter}"` : ''}. Try a different search or filter.</td></tr>`;
+        }
+        
+        tbody.innerHTML = html;
+        document.getElementById('resultCount').innerHTML = `${filteredCount} result${filteredCount !== 1 ? 's' : ''}`;
+    }
+
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearSearch');
+
+    searchInput.addEventListener('input', (e) => {
+        currentSearch = e.target.value;
+        renderTable();
+    });
+
+    clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        currentSearch = '';
+        renderTable();
+    });
+
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.dataset.filter;
+            renderTable();
+        });
+    });
+
+    // Initial render
+    renderTable();
+</script>
+</body>
+</html>
